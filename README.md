@@ -32,39 +32,40 @@ Things you may want to cover:
 | nickname           | string  | null: false |
 | email              | string  | null: false |
 | password           | string  | null: false |
-| birthday           | integer | null: false |
+| lastname           | string  | null: false |
+| name               | string  | null: false |
+| lastnamekana       | string  | null: false |
+| namekana           | string  | null: false |
+| birthday           | date    | null: false |
 
-## products テーブル
+## items テーブル
 
 | Column             | Type    | Options                        |
 | ------------------ | ------- | ------------------------------ |
-| category           | string  | null: false                    |
-| shippingcost       | string  | null: false                    |
-| area               | string  | null: false                    |
-| deliveryfee        | string  | null: false                    |
-| send               | string  | null: false                    |
-| productname        | string  | null: false                    |
+| itemname           | string  | null: false                    |
 | price              | integer | null: false                    |
-| user_id            | integer | null: false, foreign_key: true |
-
-## comments テーブル
-
-| Column             | Type    | Options                        |
-| ------------------ | ------- | ------------------------------ |
-| text               | string  | null: false                    |
-| user_id            | integer | null: false, foreign_key: true |
-| goods_id           | integer | null: false, foreign_key: true |
+| syouhinnsetumei    | text    | null: false                    |
+| category           | integer | null: false                    |
+| haisouryou         | integer | null: false                    |
+| area               | integer | null: false                    |
+| hassounissuu       | integer | null: false                    |
+| user               | integer | null: false, foreign_key: true |
 
 ## buyers テーブル
 
 | Column             | Type    | Options                        |
 | ------------------ | ------- | ------------------------------ |
-| product_id         | integer | null: false, foreign_key: true |
-| user_id            | integer | null: false, foreign_key: true |
+| item               | integer | null: false, foreign_key: true |
+| user               | integer | null: false, foreign_key: true |
 
-## shippingaddres テーブル
+## addresses テーブル
 
 | Column             | Type    | Options                        |
 | ------------------ | ------- | ------------------------------ |
-| address            | integer | null: false, foreign_key: true |
-| buyer_id           | integer | null: false, foreign_key: true |
+| postalcode         | string  | null:                          |
+| todoufukenn        | integer | null:                          |
+| sikutyousonn       | string  | null:                          |
+| address            | string  | null:                          |
+| buildingname       | string  | null:                          |
+| tel                | string  | null:                          |
+| buyer              | integer | null: false, foreign_key: true |
