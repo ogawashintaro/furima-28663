@@ -5,10 +5,10 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-  validates           :email, { uniqueness: true, presence: true, inclusion: { in: ['@'] } }
-  validates           :nickname, presence: true
-  validates_format_of :encrypted_password, { presence: true, length: { minimum:6 }, with: { PASSWORD_REGEX } }
-  validates_format_of :password_confirmation, { presence: true, with: { PASSWORD_REGEX } }
+  validates :email, { uniqueness: true, presence: true, inclusion: { in: ['@'] } }
+  validates :nickname, presence: true
+  validates :encrypted_password, { presence: true, length: { minimum:6 }, format: { with: PASSWORD_REGEX } }
+  validates :password_confirmation, { presence: true, format: { with: PASSWORD_REGEX } }
 
   with_options presence: true, format: { with: /\A[ぁ-んァ-ヶ一-龥々ー]+\z/ } do
     validates :name,      presence: true
