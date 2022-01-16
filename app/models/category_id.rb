@@ -1,5 +1,5 @@
-class CategoryId < ApplicationRecord
-  self.data = [
+class CategoryId < ActiveHash::Base
+  self.date = [
     {id: 1, name: '---'}, {id: 2, name: 'レディース'}, {id: 3, name: 'ベビー・キッズ'},
     {id: 4, name: 'インテリア・住まい・小物'}, {id: 5, name: '本・音楽・ゲーム'}, {id: 6, name: 'おもちゃ・ホビー・グッズ'},
     {id: 7, name: '家電・スマホ・カメラ'}, {id: 8, name: 'スポーツ・レジャー'},{id: 9, name: 'ハンドメイド'},

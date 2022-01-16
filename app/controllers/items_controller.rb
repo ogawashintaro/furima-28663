@@ -5,7 +5,12 @@ class ItemsController < ApplicationController
   end
 
   def new
-    @item = Item.new
+    @item      = Item.new
+    @category  = CategoryId.all
+    @condition = ProductConditionId.all
+    @area      = AreaId.all
+    @date      = ShippingDateId.all
+    @delivery  = DelivetyFeeId.all
   end
 
   def create
