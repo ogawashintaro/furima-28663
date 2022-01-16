@@ -1,6 +1,7 @@
 class ItemsController < ApplicationController
   
   def index
+    @items = Item.order("created_at DESC")
   end
 
   def new
@@ -13,6 +14,6 @@ class ItemsController < ApplicationController
 
   private
   def item_params
-    params.require(:item).permit(:item_name, :price, :information, :category_id, :delivery_fee_id, :area_id, :shipping_date_id, :product_condition_id, :user_id)
+    params.require(:item).permit(:item_name, :price, :information, :category_id, :delivery_fee_id, :area_id, :shipping_date_id, :product_condition_id, :user_id, :image)
   end
 end
