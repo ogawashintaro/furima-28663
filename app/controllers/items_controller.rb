@@ -6,11 +6,11 @@ class ItemsController < ApplicationController
 
   def new
     @item      = Item.new
-    @category  = CategoryId.all
-    @condition = ProductConditionId.all
-    @area      = AreaId.all
-    @date      = ShippingDateId.all
-    @delivery  = DelivetyFeeId.all
+    @category  = Category.all
+    @condition = ProductCondition.all
+    @area      = Area.all
+    @date      = ShippingDate.all
+    @delivery  = DeliveryFee.all
   end
 
   def create
