@@ -6,6 +6,18 @@ RSpec.describe Item, type: :model do
   end
 
   describe "商品出品" do
+    context "出品できる場合" do
+      it "item_name、price、information、category_id、delivery_fee_id、area_id、shipping_date_id、product_condition_id、user_id、imageがある場合は出品できる" do
+        expect(@item).to be_valid
+      end
+      it "priceが半角数字が含まれている場合は出品できる" do
+        expect(@item).to be_valid
+      end
+      it "priceが¥300以上¥9999999未満である場合は出品できる" do
+        expect(@item).to be_valid
+      end
+    end
+
     context "出品できない場合" do
       it "item_nameがない場合は出品できない" do
         @item.item_name = ""
@@ -68,7 +80,7 @@ RSpec.describe Item, type: :model do
         expect(@item.errors.full_messages).to include("Image can't be blank")
       end
       it "userが紐付いていなければ出品できない" do
-        @item.user_id = ""
+        @item.user_id = "aaaaa"
         @item.valid?
         expect(@item.errors.full_messages).to include("User must exist")
       end

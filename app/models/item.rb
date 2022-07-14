@@ -6,8 +6,6 @@ class Item < ApplicationRecord
   belongs_to :shipping_date
   belongs_to :product_condition
 
-  validates :area_id, numericality: { other_than: 0 , message: "can't be blank"}
-
   has_one_attached :image
 
   validates :item_name,            presence: true
