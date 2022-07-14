@@ -17,7 +17,6 @@ class Item < ApplicationRecord
   validates :area_id,              presence: true
   validates :shipping_date_id,     presence: true
   validates :product_condition_id, presence: true
-  validates :user_id,              presence: true
   validates :image,                presence: true
   with_options presence: true, format: { with: /\A[0-9]+\z/ } do
     validates :price, numericality: { only_integer: true, greater_than_or_equal_to: 300, less_than_or_equal_to: 9_999_999 },
@@ -25,6 +24,6 @@ class Item < ApplicationRecord
   end
 
 
-  # belongs_to :user
+  belongs_to :user
   # has_one :buyer
 end

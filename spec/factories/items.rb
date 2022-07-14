@@ -9,6 +9,9 @@ FactoryBot.define do
     shipping_date_id     {1}
     product_condition_id {1}
     user_id              {association :user}
-    image                {nil}
+    
+    after(:build) do |item|
+      item.image.attach(io: File.open('public/images/test_image.png'), filename: 'test_image.png')
+    end
   end
 end
