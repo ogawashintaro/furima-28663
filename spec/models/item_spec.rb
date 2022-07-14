@@ -50,27 +50,27 @@ RSpec.describe Item, type: :model do
         expect(@item.errors.full_messages).to include("Information can't be blank")
       end
       it "category_idがない場合は出品できない" do
-        @item.category_id = ""
+        @item.category_id = 0
         @item.valid?
         expect(@item.errors.full_messages).to include("Category can't be blank")
       end
       it "delivery_fee_idがない場合は出品できない" do
-        @item.delivery_fee_id = ""
+        @item.delivery_fee_id = 0
         @item.valid?
         expect(@item.errors.full_messages).to include("Delivery fee can't be blank")
       end
       it "area_idがない場合は出品できない" do
-        @item.area_id = ""
+        @item.area_id = 0
         @item.valid?
         expect(@item.errors.full_messages).to include("Area can't be blank")
       end
       it "shipping_date_idがない場合は出品できない" do
-        @item.shipping_date_id = ""
+        @item.shipping_date_id = 0
         @item.valid?
         expect(@item.errors.full_messages).to include("Shipping date can't be blank")
       end
       it "product_condition_idがない場合は出品できない" do
-        @item.product_condition_id = ""
+        @item.product_condition_id = 0
         @item.valid?
         expect(@item.errors.full_messages).to include("Product condition can't be blank")
       end
