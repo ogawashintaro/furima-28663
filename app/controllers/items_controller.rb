@@ -7,6 +7,11 @@ class ItemsController < ApplicationController
 
   def new
     @item = Item.new
+    @categorys = Category.all
+    @productconditions  = ProductCondition.all
+    @deliveryfees = DeliveryFee.all
+    @areas = Area.all
+    @shippingdates = ShippingDate.all
   end
 
   def create
@@ -20,6 +25,15 @@ class ItemsController < ApplicationController
 
   def show
     @item = Item.find(params[:id])
+  end
+
+  def edit
+    @item = Item.find(params[:id])
+  end
+
+  def update
+    item = Item.find(params[:id])
+    item.update(item_params)
   end
 
   private
