@@ -16,6 +16,9 @@ RSpec.describe Purchase, type: :model do
       it "telが11桁以内である場合は保存できる" do
         expect(@purchase).to be_valid
       end
+      it "tokenがあれば保存できる" do
+        expect(@purchase).to be_valid
+      end
     end
 
     context "保存できない場合" do
@@ -63,6 +66,11 @@ RSpec.describe Purchase, type: :model do
         @purchase.tel = "01012344567789"
         @purchase.valid?
         expect(@purchase.errors.full_messages).to include("Tel It is invalid. No hyphen required")
+      end
+      it "tokenがからの場合は保存できない" do
+        @purchase.token = ""
+        @purchase.valid?
+        expect(@purchase.errors.full_messages).to include("Token can't be blank")
       end
     end
   end
