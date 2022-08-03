@@ -2,11 +2,17 @@ require 'rails_helper'
 
 RSpec.describe Purchase, type: :model do
   before do
-    @purchase = FactoryBot.build(:purchase)
+    @user = FactoryBot.create(:user)
+    @item = FactoryBot.create(:item)
+    @purchase = FactoryBot.build(:purchase, user_id: @user.id, item_id: @item.id)
+    sleep 0.1
   end
 
   describe '購入者情報の保存' do
     context "保存できる場合" do
+      it "building_nameが空でも保存できる" do
+        expect(@purchase).to be_valid
+      end
       it "postal_code、area_id、municipalities、address、tel、item_id、user_idがある場合は保存できる" do
         expect(@purchase).to be_valid
       end
@@ -71,6 +77,21 @@ RSpec.describe Purchase, type: :model do
         @purchase.token = ""
         @purchase.valid?
         expect(@purchase.errors.full_messages).to include("Token can't be blank")
+      end
+      it "都道府県に「---」が選択されている場合は購入できない" do
+        @purchase.area_id = 0
+        @purchase.valid?
+        expect(@purchase.errors.full_messages).to include("Area can't be blank")
+      end
+      it "電話番号が9桁以下では購入できない" do
+        @purchase.tel = "1234567"
+        @purchase.valid?
+        expect(@purchase.errors.full_messages).to include("Tel It is invalid. No hyphen required")
+      end
+      it "電話番号に半角数字以外が含まれている場合は購入できない" do
+        @purchase.tel = "furima"
+        @purchase.valid?
+        expect(@purchase.errors.full_messages).to include("Tel It is invalid. No hyphen required")
       end
     end
   end

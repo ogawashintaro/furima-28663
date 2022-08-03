@@ -1,8 +1,9 @@
 class PurchasesController < ApplicationController
+  before_action :authenticate_user!, only: :index
+  before_action :purchase_item, only: [:index, :create]
 
   def index
     @purchase = Purchase.new
-    @item = Item.find(params[:item_id])
     if @item.buyer.present?
       redirect_to root_path
     end
@@ -10,7 +11,6 @@ class PurchasesController < ApplicationController
 
   def create
     @purchase = Purchase.new(purchase_params)
-    @item = Item.find(params[:item_id])
     if @purchase.valid?
       @purchase.save
       Payjp.api_key = ENV["PAYJP_SECRET_KEY"]
@@ -29,5 +29,9 @@ class PurchasesController < ApplicationController
   
   def purchase_params
     params.require(:purchase).permit(:postal_code, :area_id, :municipalities, :address, :building_name, :tel).merge(user_id: current_user.id, token: params[:token], item_id: params[:item_id])
+  end
+
+  def purchase_item
+    @item = Item.find(params[:item_id])
   end
 end
