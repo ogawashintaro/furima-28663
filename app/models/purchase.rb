@@ -15,10 +15,8 @@ class Purchase
 
 
   def save
-    item = Item.create(item_name: item_name, information: information, category_id: category_id, product_condition_id: product_condition_id, delivery_fee_id: delivery_fee_id, area_id: area_id, shipping_date_id: shipping_date_id, price: price)
-    user = User.create(nickname: nickname, email: email, password: password, password_confirmation: password_confirmation, last_name: last_name, name: name, last_name_kana: last_name_kana, name_kana: name_kana, birthday: birthday)
-    Address.create(postal_code: postal_code, area_id: area_id, municipalities: municipalities, address: address, building_name: building_name, tel: tel, user_id: user.id)
-    Buyer.create(item_id: item.id, user_id: user.id)
+    buyer = Buyer.create(item_id: item_id, user_id: user_id) 
+    Address.create(postal_code: postal_code, area_id: area_id, municipalities: municipalities, address: address, building_name: building_name, tel: tel, buyer_id: buyer.id)
   end
 end
 

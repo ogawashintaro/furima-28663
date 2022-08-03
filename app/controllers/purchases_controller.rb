@@ -2,12 +2,17 @@ class PurchasesController < ApplicationController
 
   def index
     @purchase = Purchase.new
+    @item = Item.find(params[:item_id])
+    if @item.buyer.present?
+      redirect_to root_path
+    end
   end
 
   def create
     @purchase = Purchase.new(purchase_params)
     @item = Item.find(params[:item_id])
     if @purchase.valid?
+      @purchase.save
       Payjp.api_key = ENV["PAYJP_SECRET_KEY"]
       Payjp::Charge.create(
         amount: @item.price,
