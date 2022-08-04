@@ -3,10 +3,8 @@ FactoryBot.define do
     postal_code     {"123-4567"}
     area_id         {20}
     municipalities  {"aaaaaa"}
-    building_name   {""}
+    building_name   {"柳ビル"}
     address         {"123番地"}
-    user_id         {  }
-    item_id         {  }
     tel             {"09012345678"}
     token           {"tok_abcdefghijk00000000000000000"}
   end

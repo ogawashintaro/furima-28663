@@ -11,18 +11,10 @@ RSpec.describe Purchase, type: :model do
   describe '購入者情報の保存' do
     context "保存できる場合" do
       it "building_nameが空でも保存できる" do
+        @purchase.building_name = ""
         expect(@purchase).to be_valid
       end
-      it "postal_code、area_id、municipalities、address、tel、item_id、user_idがある場合は保存できる" do
-        expect(@purchase).to be_valid
-      end
-      it "postal_codeに(-)が含まれている場合は保存できる" do
-        expect(@purchase).to be_valid
-      end
-      it "telが11桁以内である場合は保存できる" do
-        expect(@purchase).to be_valid
-      end
-      it "tokenがあれば保存できる" do
+      it "すべての値が入力されている場合は保存できる" do
         expect(@purchase).to be_valid
       end
     end
